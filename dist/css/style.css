@@ -146,7 +146,7 @@ input, select {
   padding-left: 24px;
   margin-bottom: 12px;
   -webkit-user-select: none;
-    -moz-user-select: none;
+     -moz-user-select: none;
           user-select: none;
 }
 .checkbox label {

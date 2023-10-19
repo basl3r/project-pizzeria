@@ -1,5 +1,4 @@
 /* global utils, dataSource */ // eslint-disable-line no-unused-vars
-
 {
   'use strict';
 
@@ -59,20 +58,44 @@
       thisProduct.data = data;
       thisProduct.renderInMenu();
       console.log('new Product: ', thisProduct);
+      thisProduct.initAccordion();
     }
-
+    
     renderInMenu() {
       const thisProduct = this;
-
       /* generate HTML based on template */
-      const generatedHTML = templates.menuProduct (thisProduct.data);
-      console.log('generatedHTML: ', generatedHTML);
+      const generatedHTML = templates.menuProduct(thisProduct.data);
       /* create element using utils.createElementFromHTML */
       thisProduct.element = utils.createDOMFromHTML(generatedHTML);
       /* find menu container */
       const menuContainer = document.querySelector(select.containerOf.menu);
       /* add element to menu */
       menuContainer.appendChild(thisProduct.element);
+    }
+
+    initAccordion(){
+      const thisProduct = this;
+      console.log('thisProduct in initAccordion: ', thisProduct);
+      /* find the clickable trigger (the element that should react to clicking) */
+      const clickableTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
+      console.log('clickableTrigger: ', clickableTrigger);
+    
+      /* START: add event listener to clickable trigger on event click */
+      clickableTrigger.addEventListener('click', function(event) {
+        const clickedElement = this;
+        console.log('clickedElement: ', clickedElement);
+        /* prevent default action for event */
+        event.defaultPrevented;
+        /* find active product (product that has active class) */
+        const activeProduct = document.querySelector('.product.active');
+        console.log('activeProduct', activeProduct);
+        /* if there is active product and it's not thisProduct.element, remove class active from it */
+        if (activeProduct)
+          activeProduct.classList.remove('active');
+        /* toggle active class on thisProduct.element */
+        thisProduct.element.classList.toggle('active');
+      });
+  
     }
   }
 
