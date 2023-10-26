@@ -173,6 +173,7 @@
       thisProduct.dom.cardButton.addEventListener('click', function(event){
         event.preventDefault();
         thisProduct.processOrder();
+        thisProduct.addToCart();
       });
       
     }
@@ -220,9 +221,10 @@
         }
       }
     
+      thisProduct.priceSingle = price;
       // multiply price by amount
       price *= thisProduct.amountWidget.value;
-
+      
       // update calculated price in the HTML
       thisProduct.dom.priceElem.innerHTML = price;
     }
@@ -235,7 +237,68 @@
         thisProduct.processOrder();
       });
     }
+
+    addToCart() {
+      const thisProduct = this;   
+      
+      app.cart.add(thisProduct.prepareCartProduct());
+    }
+
+    prepareCartProduct() {
+      const thisProduct = this;
+
+      const productSummary = {
+        id: thisProduct.id,
+        name: thisProduct.data.name,
+        amount: thisProduct.amountWidget.value,
+        price: thisProduct.priceSingle * thisProduct.amountWidget.value,
+        priceSingle: thisProduct.priceSingle,
+        params: thisProduct.prepareCartProductParams()
+      };
+
+      console.log('prduct Summary: ', productSummary);
+      return productSummary;
+
+    }
+
+    prepareCartProductParams() {
+      const thisProduct = this;
+      // covert form to object structure e.g. { sauce: ['tomato'], toppings: ['olives', 'redPeppers']}
+      const formData = utils.serializeFormToObject(thisProduct.dom.form);
+      console.log('formData', formData);
+
+      thisProduct.params = {};
+      let newParams = thisProduct.params;
+
+      // for every category (param)...
+      for(let paramId in thisProduct.data.params) {
+        // determine param value, e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'... }
+        const param = thisProduct.data.params[paramId];
+        console.log('paramId, param: ', paramId, param);
+
+        newParams[paramId] = {};
+
+        newParams[paramId].label = param.label;
+
+        newParams[paramId].options = {};
+
+        // for every option in this category
+        for(let optionId in param.options) {
+          // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
+          const option = param.options[optionId];
+
+          const optionSelected = formData[paramId] && formData[paramId].includes(optionId);
+
+          if (optionSelected) {
+            newParams[paramId].options[optionId] = option.label;
+          }
+        }
+      }
+      console.log('newParams: ', newParams);
+      return newParams;
+    }
   }
+  
 
   class AmountWidget {
     constructor(element) {
@@ -323,6 +386,8 @@
       thisCart.dom.wrapper = element;
 
       thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
+
+      thisCart.dom.productList = thisCart.dom.wrapper.querySelector(select.cart.productList);
     }
 
     initActions() {
@@ -332,6 +397,24 @@
         thisCart.dom.wrapper.classList.toggle('active');
       });
     }
+
+
+    add(menuProduct) {
+      const thisCart = this;
+      console.log('thisCart:', thisCart);
+      /* generate HTML based on template */
+      const generatedHTML = templates.cartProduct(menuProduct);
+      console.log('generatedHTML: ', generatedHTML);
+      /* create element using utils.createElementFromHTML */
+      thisCart.element = utils.createDOMFromHTML(generatedHTML);
+      console.log('thisCart.element: ', thisCart.element);
+      /* add element to cart */
+      thisCart.dom.productList.appendChild(thisCart.element);
+
+      console.log('adding product: ', menuProduct);
+    }
+
+
   }
 
   const app = {
@@ -352,7 +435,7 @@
       thisApp.data = dataSource;
     },
 
-    initCard: function() {
+    initCart: function() {
       const thisApp = this;
       
       const cartElem = document.querySelector(select.containerOf.cart);
@@ -368,7 +451,7 @@
       console.log('templates:', templates);
       thisApp.initData();
       thisApp.initMenu();
-      thisApp.initCard();
+      thisApp.initCart();
     }
   };
   
