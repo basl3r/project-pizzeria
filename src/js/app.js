@@ -244,10 +244,25 @@
       });
     }
 
+    resetToDefaultState() {
+      const thisProduct = this;
+      console.log('resetToDefault: ', thisProduct);
+
+      thisProduct.amountWidget.value = 1;
+      
+      thisProduct.amountWidget.input.value = 1;
+
+      thisProduct.dom.priceElem.innerHTML = thisProduct.priceSingle;
+
+    }
+  
     addToCart() {
       const thisProduct = this;   
       
       app.cart.add(thisProduct.prepareCartProduct());
+
+      thisProduct.resetToDefaultState();
+    
     }
 
     prepareCartProduct() {
@@ -363,6 +378,7 @@
         thisWidget.setValue(thisWidget.value += 1) ;
       });
     }
+
     announce() {
       const thisWidget = this;
 
@@ -434,6 +450,7 @@
       thisCart.dom.form.addEventListener('submit', function (event) {
         event.preventDefault();
         thisCart.sendOrder();
+        thisCart.clearCart();
       });
     }
 
@@ -509,6 +526,13 @@
       thisCart.update();
     }
 
+    clearCart() {
+      const thisCart = this;
+      thisCart.products = [];
+      thisCart.dom.productList.innerHTML = '';
+      thisCart.update();
+    }
+
     sendOrder() {
       const thisCart = this;
 
@@ -541,6 +565,7 @@
 
       console.log('thisCart.payload: ', payload);
     }
+
   }
 
   class CartProduct {
