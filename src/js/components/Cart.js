@@ -11,8 +11,6 @@ class Cart {
     thisCart.getElements(element);
     thisCart.initActions();
 
-
-    console.log('new Cart', thisCart, element);
   }
 
   getElements(element) {
@@ -89,8 +87,6 @@ class Cart {
     const thisCart = this;
 
     let deliveryFee = settings.cart.defaultDeliveryFee;
-    console.log('deliveryFee: ', deliveryFee);
-    console.log('thisCart in update: ', thisCart);
 
     thisCart.totalNumber = 0;
     thisCart.subtotalPrice = 0;
@@ -98,7 +94,6 @@ class Cart {
     console.log(thisCart.subtotalPrice, thisCart.totalNumber, );
 
     for (let product of thisCart.products) {
-      console.log('product: ', product);
       thisCart.totalNumber += product.amount;
       thisCart.subtotalPrice += product.price;
     }
@@ -109,8 +104,6 @@ class Cart {
       thisCart.totalPrice = 0;
       deliveryFee = 0;
     }
-    
-    console.log('thisCart.totalPrice:  ', thisCart.totalPrice);
 
     thisCart.dom.deliveryFee.innerHTML = deliveryFee;
 
@@ -126,7 +119,6 @@ class Cart {
 
   remove(thisCartProduct) {
     const thisCart = this;
-    console.log('remove thisCart: ', thisCart);
 
     thisCartProduct.dom.wrapper.remove();
 
@@ -148,7 +140,6 @@ class Cart {
     const thisCart = this;
 
     const url = settings.db.url + '/' + settings.db.orders;
-    console.log('url: ', url);
 
     const payload = {
       address: thisCart.dom.address.value,
@@ -174,7 +165,6 @@ class Cart {
 
     fetch(url, options);
 
-    console.log('thisCart.payload: ', payload);
   }
 
 }

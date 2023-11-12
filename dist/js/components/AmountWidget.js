@@ -23,7 +23,6 @@ class AmountWidget extends BaseWidget{
   }
 
   isValid(value){
-    console.log('isValid start ');
     return !isNaN(value) && value >= settings.amountWidget.defaultMin && value <= settings.amountWidget.defaultMax;
   }
 

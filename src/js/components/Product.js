@@ -147,8 +147,9 @@ class Product {
 
   initAmountWidget() {
     const thisProduct = this; 
-
+    
     thisProduct.amountWidget = new AmountWidget(thisProduct.dom.amountWidgetElem);
+    thisProduct.amountWidget.dom.input.value = 1;
     thisProduct.dom.amountWidgetElem.addEventListener('updated', () => {
       thisProduct.processOrder();
     });
@@ -160,7 +161,7 @@ class Product {
 
     thisProduct.amountWidget.value = 1;
     
-    thisProduct.amountWidget.input.value = 1;
+    thisProduct.amountWidget.dom.input.value = 1;
 
     thisProduct.dom.priceElem.innerHTML = thisProduct.priceSingle;
 
@@ -171,8 +172,6 @@ class Product {
     
     // app.cart.add(thisProduct.prepareCartProduct());
 
-    thisProduct.resetToDefaultState();
-
     const event = new CustomEvent('add-to-cart', {
       bubbles: true,
       detail: {
@@ -182,12 +181,14 @@ class Product {
     );
     
     thisProduct.element.dispatchEvent(event);
+
+    thisProduct.resetToDefaultState();
   
   }
 
   prepareCartProduct() {
     const thisProduct = this;
-
+    console.log('prepareCartProduct: ', thisProduct);
     const productSummary = {
       id: thisProduct.id,
       name: thisProduct.data.name,
@@ -197,7 +198,7 @@ class Product {
       params: thisProduct.prepareCartProductParams()
     };
 
-    console.log('prduct Summary: ', productSummary);
+    console.log('product Summary: ', productSummary);
     return productSummary;
 
   }
