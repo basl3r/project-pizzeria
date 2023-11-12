@@ -12,7 +12,7 @@ class Product {
     thisProduct.getElements();
     thisProduct.initAmountWidget();
     thisProduct.initOrderForm();
-    console.log('new Product: ', thisProduct);
+    //console.log('new Product: ', thisProduct);
     thisProduct.initAccordion();
   }
   
@@ -50,7 +50,7 @@ class Product {
 
   initAccordion(){
     const thisProduct = this;
-    console.log('thisProduct in initAccordion: ', thisProduct);
+    //console.log('thisProduct in initAccordion: ', thisProduct);
     /* find the clickable trigger (the element that should react to clicking) */
     /* START: add event listener to clickable trigger on event click */
     thisProduct.dom.accordionTrigger.addEventListener('click', function(event) {
@@ -73,7 +73,7 @@ class Product {
 
   initOrderForm() {
     const thisProduct = this;
-    console.log('this in initOrderForm: ', thisProduct);
+    //console.log('this in initOrderForm: ', thisProduct);
 
     thisProduct.dom.form.addEventListener('submit', function(event){
       event.preventDefault();
@@ -114,8 +114,8 @@ class Product {
       for(let optionId in param.options) {
         // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
         const option = param.options[optionId];
-        console.log(optionId, option);
-        console.log('option.default: ', option.default);
+        //console.log(optionId, option);
+        //console.log('option.default: ', option.default);
         
         const optionSelected = formData[paramId] && formData[paramId].includes(optionId);
 
@@ -126,7 +126,7 @@ class Product {
           price -= option.price;
 
         const image = thisProduct.dom.imageWrapper.querySelector(`.${paramId}-${optionId}`);
-        console.log(image);
+        //console.log(image);
 
         if (image) {
           if (optionSelected) {
@@ -157,7 +157,7 @@ class Product {
 
   resetToDefaultState() {
     const thisProduct = this;
-    console.log('resetToDefault: ', thisProduct);
+    //console.log('resetToDefault: ', thisProduct);
 
     thisProduct.amountWidget.value = 1;
     
@@ -198,7 +198,7 @@ class Product {
       params: thisProduct.prepareCartProductParams()
     };
 
-    console.log('product Summary: ', productSummary);
+    //console.log('product Summary: ', productSummary);
     return productSummary;
 
   }
@@ -207,7 +207,7 @@ class Product {
     const thisProduct = this;
     // covert form to object structure e.g. { sauce: ['tomato'], toppings: ['olives', 'redPeppers']}
     const formData = utils.serializeFormToObject(thisProduct.dom.form);
-    console.log('formData', formData);
+    //console.log('formData', formData);
 
     thisProduct.params = {};
     let newParams = thisProduct.params;
@@ -216,7 +216,7 @@ class Product {
     for(let paramId in thisProduct.data.params) {
       // determine param value, e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'... }
       const param = thisProduct.data.params[paramId];
-      console.log('paramId, param: ', paramId, param);
+      //console.log('paramId, param: ', paramId, param);
 
       newParams[paramId] = {};
 
@@ -236,7 +236,7 @@ class Product {
         }
       }
     }
-    console.log('newParams: ', newParams);
+    //console.log('newParams: ', newParams);
     return newParams;
   }
 }
