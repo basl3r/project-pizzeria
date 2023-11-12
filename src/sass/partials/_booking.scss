@@ -7,7 +7,7 @@
       display: block;
     }
   }
-  
+
   .booking-widget {
     transform: opacity 500ms;
   
@@ -194,6 +194,22 @@
     }
   }
   
+  .booking-selected {
+    background-color: #86f09a !important;
+    z-index: 20;
+    position: relative;
+      &::before {
+        position: absolute;
+        content: '';
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border: 3px solid #249c3b;
+        filter: blur(5px);
+      }
+  }
+
   .booking-options {
     @include flex(row, flex-start, space-between);
     margin: ($base-size * 4) auto;
