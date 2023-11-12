@@ -12,6 +12,8 @@ class Booking {
     thisBooking.initWidgets();
     thisBooking.getData();
 
+    thisBooking.selectedTable = [];
+
   }
 
   getData() {
@@ -176,10 +178,14 @@ class Booking {
     thisBooking.dom.hourPicker = thisBooking.dom.wrapper.querySelector(select.widgets.hourPicker.wrapper);
 
     thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
+
+    thisBooking.dom.floorPlan = thisBooking.dom.wrapper.querySelector(select.booking.floorPlan);
+
   }
 
   initWidgets() {
     const thisBooking = this;
+
 
     thisBooking.peopleAmount = new AmountWidget(thisBooking.dom.peopleAmount);
     thisBooking.hoursAmount = new AmountWidget(thisBooking.dom.hoursAmount);
@@ -188,8 +194,47 @@ class Booking {
     thisBooking.hourPicker = new HourPicker(thisBooking.dom.hourPicker);
 
     thisBooking.dom.wrapper.addEventListener('updated', function() {
+      thisBooking.resetTables();
       thisBooking.updateDOM();
     });
+
+    thisBooking.dom.floorPlan.addEventListener('click', function(event) {
+      const clickedTable = event.target.closest('div');
+  
+      if (clickedTable.classList.contains('booked')) {
+        console.log('Table booked');
+        
+      }
+      else if (clickedTable.hasAttribute(settings.booking.tableIdAttribute)) {
+        const tableId = clickedTable.getAttribute(settings.booking.tableIdAttribute);
+  
+        const isTableSelected = clickedTable.classList.contains('booking-selected');
+  
+        const selectedTables = thisBooking.dom.floorPlan.querySelectorAll('.booking-selected');
+        
+        for (let table of selectedTables) {
+          table.classList.remove('booking-selected');
+        }
+  
+        if (!isTableSelected) {
+          clickedTable.classList.add('booking-selected');
+          thisBooking.selectedTable = [tableId];
+        } else {
+          thisBooking.selectedTable = [];
+        }
+      }
+    });
+  }
+
+  resetTables() {
+    const thisBooking = this;
+  
+    const selectedTables = thisBooking.dom.floorPlan.querySelectorAll('.booking-selected');
+    for (let table of selectedTables) {
+      table.classList.remove('booking-selected');
+    }
+
+    thisBooking.selectedTable = [];
   }
 }
 
