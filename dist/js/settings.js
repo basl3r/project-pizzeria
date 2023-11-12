@@ -64,6 +64,10 @@ export const select = {
     hoursAmount: '.hours-amount',
     tables: '.floor-plan .table',
     floorPlan: '.floor-plan ',
+    inputPhone: 'input[name="phone"]',
+    inputAddress: 'input[name="address"]',
+    inputStarters: 'input[name="starter"]',
+    form: '.booking-form',
   },
   nav: {
     links: '.main-nav a',
