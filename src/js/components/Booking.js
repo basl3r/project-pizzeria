@@ -8,7 +8,7 @@ class Booking {
   constructor(element) {
     const thisBooking = this;
 
-    thisBooking.selectedTable = [];
+    thisBooking.selectedTable = null;
 
     thisBooking.render(element);
     thisBooking.initWidgets();
@@ -99,6 +99,7 @@ class Booking {
   }
 
   makeBooked(date, hour, duration, table) {
+    console.log(date, hour, duration, table);
     const thisBooking = this;
     
     if (typeof thisBooking.booked[date] == 'undefined') {
@@ -125,6 +126,14 @@ class Booking {
 
   updateDOM(){
     const thisBooking = this;
+
+    thisBooking.selectedTable = null;
+
+    const selectedTables = thisBooking.dom.floorPlan.querySelectorAll('.booking-selected');
+        
+    for (let table of selectedTables) {
+      table.classList.remove('booking-selected');
+    }
 
     thisBooking.date = thisBooking.datePicker.value;
     thisBooking.hour = utils.hourToNumber(thisBooking.hourPicker.value);
@@ -215,9 +224,9 @@ class Booking {
   
       if (!isTableSelected) {
         clickedTable.classList.add('booking-selected');
-        thisBooking.selectedTable = [tableId];
+        thisBooking.selectedTable = +tableId;
       } else {
-        thisBooking.selectedTable = [];
+        thisBooking.selectedTable = null;
       }
     }
   }
@@ -241,7 +250,8 @@ class Booking {
       thisBooking.initTables(event);
     });
 
-    thisBooking.dom.form.addEventListener('submit', function() {
+    thisBooking.dom.form.addEventListener('submit', function(event) {
+      event.preventDefault();
       thisBooking.sendBooking();
     });
   }
@@ -296,7 +306,7 @@ class Booking {
 
     fetch(url, options)
       .then(function (response) {
-        return response.json();
+        return response.json(); //convert from json to JS
       })
       .then(function () {
         thisBooking.makeBooked(
@@ -305,11 +315,9 @@ class Booking {
           payload.duration,
           payload.table
         );
+        thisBooking.updateDOM();
+        console.log('thisbooking.booked', thisBooking.booked);
       });
-
-    thisBooking.updateDOM();
-    console.log('thisbooking.booked', thisBooking.booked);
-
   }
 }
 
