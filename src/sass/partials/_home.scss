@@ -7,3 +7,23 @@
     display: block;
   }
 }
+
+.home-wrapper {
+  margin-top: 43px;
+  padding: 73px 49px;
+  background-color: white;
+}
+
+.home {
+  &__info {
+    display: flex;
+
+    div {
+      height: 120px;
+      width: 300px;
+      background-color: black;
+      color: white;
+    }
+  }
+
+}
