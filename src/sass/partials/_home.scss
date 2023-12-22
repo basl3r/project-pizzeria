@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Oswald:wght@600&display=swap');
+
 #pages {
   > * {
     display: none;
@@ -30,15 +32,45 @@
       justify-content: center;
       align-items: center;
       text-transform: uppercase;
+      font-family: 'Oswald', sans-serif;
+      font-size: 19px;
     }
 
-    div:nth-child(1),
+    div:nth-child(1) {
+      flex: 2;
+      background-image: url('../../images/home/pizza-1.jpg');
+      background-position: center;
+      background-size: cover;
+    }
+
     div:nth-child(2) {
       flex: 2;
+      background-image: url('../../images/home/pizza-2.jpg');
+      background-position: center;
+      background-size: cover;
     }
 
     div:nth-child(3) {
       flex: 100%;
+      flex-wrap: wrap;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #ff6b6b;
+      padding: 25px 0;
+    }
+    
+    div:nth-child(3) span {
+      flex: 100%;
+      display: flex;
+      justify-content: center;
+      margin: -10px; /* Usuń margines między spanami */
+    }
+
+    div:nth-child(3) span:nth-child(2) {
+      font-weight: 100;
+      font-family: 'Lato', sans-serif;
+      font-size: 12px;
     }
   }
 
