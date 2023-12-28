@@ -90,6 +90,34 @@ const app = {
 
       });
     }
+
+    const orderLink = document.querySelector('#home-page a[href="#order"]');
+    console.log('orderLink: ', orderLink);
+
+    if (orderLink) {
+      orderLink.addEventListener('click', function(event) {
+        event.preventDefault();
+
+        const id = 'order'; // or any other id you want
+        thisApp.activatePage(id);
+        window.location.hash = '#/' + id;
+        console.log('Order link clicked');
+      });
+    }
+
+    const bookingLink = document.querySelector('#home-page a[href="#booking"]');
+    console.log('bookingLink: ', bookingLink);
+
+    if (bookingLink) {
+      bookingLink.addEventListener('click', function(event) {
+        event.preventDefault();
+
+        const id = 'booking'; // or any other id you want
+        thisApp.activatePage(id);
+        window.location.hash = '#/' + id;
+        console.log('Booking link clicked');
+      });
+    }
   },
 
   activatePage: function(pageId) {
@@ -117,5 +145,7 @@ const app = {
 
   }
 };
-  
+
+
+
 app.init();
