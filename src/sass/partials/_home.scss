@@ -21,6 +21,14 @@
     display: flex;
     flex-wrap: wrap;
 
+    a:active,
+    a:link,
+    a:hover,
+    a:visited {
+      color: #fff;
+      text-decoration: none;
+    }
+
     div {
       position: relative;
       display: flex;
@@ -113,6 +121,97 @@
       font-size: 12px;
     }
 
+  }
+
+  &__images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 110px;
+
+    div {
+      position: relative;
+      flex: 25%;
+      height: 190px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background-size: cover;
+      background-position: center;
+      border-radius: 3px;
+      margin-bottom: 10px;
+      margin-right: 10px;
+    }
+
+    div::before {
+      content: '';
+      position: absolute;
+      height: 190px;
+      aspect-ratio: 1;
+      background-color: #000;
+      opacity: 0;
+      transition: all 0.5s ease;
+    }
+
+    div:hover::before {
+      opacity: 0.5;
+    }
+
+    div:nth-child(1) {
+      background-image: url('../../images/home/pizza-4.jpg')
+    }
+
+    div:nth-child(2) {
+      background-image: url('../../images/home/pizza-5.jpg')
+    }
+
+    div:nth-child(3) {
+      background-image: url('../../images/home/pizza-6.jpg')
+    }
+
+    div:nth-child(4) {
+      background-image: url('../../images/home/pizza-7.jpg')
+    }
+
+    div:nth-child(5) {
+      background-image: url('../../images/home/pizza-8.jpg')
+    }
+
+    div:nth-child(6) {
+      background-image: url('../../images/home/pizza-9.jpg')
+    }
+
+    div:nth-child(7) {
+      background-image: url('../../images/home/pizza-1.jpg')
+    }
+
+    div:hover i {
+      display: inline-block;
+      z-index: 150;
+    }
+
+    div a {
+      z-index: 150;
+    }
+
+    i {
+      height: 30px;
+      width: 30px;
+      display: none;
+      z-index: 100;
+      cursor: pointer;
+    }
+
+    .fa-heart {
+      color: #e55039;
+      z-index: 100;
+    }
+
+    .fa-share-nodes {
+      color: #fff;
+    }
   }
 }
 

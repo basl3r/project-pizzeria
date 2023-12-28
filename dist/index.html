@@ -7,6 +7,7 @@
   <title>Pizzeria</title>
   <link href="https://fonts.googleapis.com/css?family=Lato:400,300i,700%7COswald:300,500,700&amp;subset=latin-ext" rel="stylesheet">
   <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
+  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="./vendor/range-slider.min.css">
@@ -69,16 +70,16 @@
       <div id="home-page" class="home-wrapper container">
         <div class="home__info">
           <div>
-            <span>order online</span>
+            <span><a href="#order">order online</a></span>
             <span>Delicous food delivered to your door</span>
           </div>
           <div>
-            <span>book a table</span>
+            <span><a href="#booking">book a table</a></span>
             <span>Book your table and make your taste buds sing</span>
           </div>
           <div>
             <span>opening hours:</span>
-            <span>tue-sun, 12PM - 12 AM</span>
+            <span>tue-sun, 12 PM - 12 AM</span>
           </div>
         </div>
         <div class="main-carousel" data-flickity='{ "cellAlign": "center", "contain": true }'>
@@ -113,7 +114,32 @@
             </div>
           </div>
       </div>
-      <div class="home__images"></div>
+      <div class="home__images">
+        <div>
+          <a href="#"><i class="fa-solid fa-heart"></i></a>
+          <a href="#"><i class="fa-solid fa-share-nodes"></i></a>
+        </div>
+        <div>
+          <a href="#"><i class="fa-solid fa-heart"></i></a>
+          <a href="#"><i class="fa-solid fa-share-nodes"></i></a>
+        </div>
+        <div>
+          <a href="#"><i class="fa-solid fa-heart"></i></a>
+          <a href="#"><i class="fa-solid fa-share-nodes"></i></a>
+        </div>
+        <div>
+          <a href="#"><i class="fa-solid fa-heart"></i></a>
+          <a href="#"><i class="fa-solid fa-share-nodes"></i></a>
+        </div>
+        <div>
+          <a href="#"><i class="fa-solid fa-heart"></i></a>
+          <a href="#"><i class="fa-solid fa-share-nodes"></i></a>
+        </div>
+        <div>
+          <a href="#"><i class="fa-solid fa-heart"></i></a>
+          <a href="#"><i class="fa-solid fa-share-nodes"></i></a>
+        </div>
+      </div>
     </section>
     <section id="order">
       <div id="product-list" class="product-list container"></div>
@@ -305,6 +331,7 @@
   <script src="./vendor/range-slider.min.js"></script>
   <script src="/path/to/flickity.pkgd.min.js"></script>
   <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+  <script src="https://kit.fontawesome.com/cffd40ac62.js" crossorigin="anonymous"></script>
   <script src="js/app.js" type="module"></script>
 </body>
 </html>
