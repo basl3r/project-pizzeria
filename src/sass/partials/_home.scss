@@ -22,6 +22,7 @@
     flex-wrap: wrap;
 
     div {
+      position: relative;
       display: flex;
       height: 120px;
       width: 300px;
@@ -34,18 +35,19 @@
       text-transform: uppercase;
       font-family: 'Oswald', sans-serif;
       font-size: 19px;
+      user-select: none;
     }
 
     div:nth-child(1) {
       flex: 2;
-      background-image: url('../../../src/images/home/pizza-1.jpg');
+      background-image: url('../../images/home/pizza-1.jpg');
       background-position: center;
       background-size: cover;
     }
 
     div:nth-child(2) {
       flex: 2;
-      background-image: url('../../../src/images/home/pizza-2.jpg');
+      background-image: url('../../images/home/pizza-2.jpg');
       background-position: center;
       background-size: cover;
     }
@@ -71,6 +73,13 @@
       font-weight: 100;
       font-family: 'Lato', sans-serif;
       font-size: 12px;
+    }
+
+    div:nth-child(1):hover span,
+    div:nth-child(2):hover span {
+      position: absolute;
+      transition: all linear 50ms;
+      top: 10px;
     }
   }
 
