@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="./vendor/range-slider.min.css">
   <link rel="stylesheet" href="/path/to/flickity.css" media="screen">
+  <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 </head>
 <body>
 
@@ -80,12 +81,39 @@
             <span>tue-sun, 12PM - 12 AM</span>
           </div>
         </div>
-        <div class="home__carousel">
-          <div class="carousel-photo"></div>
-          <div class="carousel-comment"></div>
-        </div>
-        <div class="home__images"></div>
+        <div class="main-carousel" data-flickity='{ "cellAlign": "center", "contain": true }'>
+          <div class="carousel-cell">
+            <div class="carousel-wrapper">
+              <div class="carousel-photo"></div>
+              <div class="carousel-comment">
+                <span>amazing service!</span>
+                <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, aliquid eum officiis iusto ut accusantium nam doloribus? Saepe, quos possimus porro quaerat nulla id dolorum sint veritatis? Nulla, magni corporis.</span>
+                <span>- Margaret Osborne</span>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-cell">
+            <div class="carousel-wrapper">
+              <div class="carousel-photo"></div>
+              <div class="carousel-comment">
+                <span>amazing service!</span>
+                <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, aliquid eum officiis iusto ut accusantium nam doloribus? Saepe, quos possimus porro quaerat nulla id dolorum sint veritatis? Nulla, magni corporis.</span>
+                <span>- Margaret Osborne</span>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-cell">
+            <div class="carousel-wrapper">
+              <div class="carousel-photo"></div>
+              <div class="carousel-comment">
+                <span>amazing service!</span>
+                <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, aliquid eum officiis iusto ut accusantium nam doloribus? Saepe, quos possimus porro quaerat nulla id dolorum sint veritatis? Nulla, magni corporis.</span>
+                <span>- Margaret Osborne</span>
+              </div>
+            </div>
+          </div>
       </div>
+      <div class="home__images"></div>
     </section>
     <section id="order">
       <div id="product-list" class="product-list container"></div>
@@ -276,6 +304,7 @@
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="./vendor/range-slider.min.js"></script>
   <script src="/path/to/flickity.pkgd.min.js"></script>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
   <script src="js/app.js" type="module"></script>
 </body>
 </html>

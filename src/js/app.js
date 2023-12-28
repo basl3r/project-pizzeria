@@ -116,7 +116,6 @@ const app = {
     new Booking(bookingContainer);
 
   }
-  
 };
   
 app.init();
